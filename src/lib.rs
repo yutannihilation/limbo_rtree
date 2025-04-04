@@ -20,9 +20,9 @@ impl limbo_ext::VTabModule for RTreeVTab {
         let table_name = args[0].to_text().unwrap_or("tmp");
         format!(
             r#"-- rtree
-CREATE TABLE IF NOT EXISTS "{table_name}_node"   (nodeno INTEGER PRIMARY KEY, data);
-CREATE TABLE IF NOT EXISTS "{table_name}_parent" (nodeno INTEGER PRIMARY KEY, parentnode);
-CREATE TABLE IF NOT EXISTS "{table_name}_rowid"  (rowid  INTEGER PRIMARY KEY, nodeno);
+CREATE TABLE "{table_name}_node"   (nodeno INTEGER PRIMARY KEY, data);
+CREATE TABLE "{table_name}_parent" (nodeno INTEGER PRIMARY KEY, parentnode);
+CREATE TABLE "{table_name}_rowid"  (rowid  INTEGER PRIMARY KEY, nodeno);
 "#
         )
     }
