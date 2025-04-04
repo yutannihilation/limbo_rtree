@@ -1,0 +1,20 @@
+[package]
+name = "limbo_rtree"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+static = ["limbo_ext/static"]
+
+[dependencies]
+limbo_ext = { git = "https://github.com/tursodatabase/limbo", tag = "v0.0.19-pre.4", features = [
+    "static",
+] }
+rstar = "0.12.2"
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+mimalloc = { version = "0.1", default-features = false }
+
+# NOTE: Crate must be of type `cdylib` if you wish to link dynamically
+[lib]
+crate-type = ["cdylib", "lib"]
