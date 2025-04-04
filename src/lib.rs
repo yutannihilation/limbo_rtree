@@ -1,3 +1,5 @@
+use limbo_ext::{VTabCursor, VTabKind, VTabModule, VTabModuleDerive};
+
 #[derive(VTabModuleDerive, Default)]
 pub struct RTreeVTab;
 
@@ -7,10 +9,10 @@ pub struct RTreeCursor {
     index: Option<usize>,
 }
 
-impl limbo_ext::VTabModule for RTreeVTab {
-    type VCursor;
+impl VTabModule for RTreeVTab {
+    type VCursor = RTreeCursor;
 
-    const VTAB_KIND: limbo_ext::VTabKind = limbo_ext::VTabKind::VirtualTable;
+    const VTAB_KIND: VTabKind = VTabKind::VirtualTable;
 
     const NAME: &'static str = "rtree";
 
@@ -44,6 +46,26 @@ CREATE TABLE "{table_name}_rowid"  (rowid  INTEGER PRIMARY KEY, nodeno);
     }
 
     fn eof(cursor: &Self::VCursor) -> bool {
+        todo!()
+    }
+}
+
+impl VTabCursor for RTreeCursor {
+    type Error = String;
+
+    fn rowid(&self) -> i64 {
+        todo!()
+    }
+
+    fn column(&self, idx: u32) -> Result<limbo_ext::Value, Self::Error> {
+        todo!()
+    }
+
+    fn eof(&self) -> bool {
+        todo!()
+    }
+
+    fn next(&mut self) -> limbo_ext::ResultCode {
         todo!()
     }
 }
